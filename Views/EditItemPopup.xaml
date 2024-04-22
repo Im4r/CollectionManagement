@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<toolkit:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             CanBeDismissedByTappingOutsideOfPopup="False"
+             x:Class="CollectionManagement.Views.EditItemPopup"
+             Color="Beige"
+               >
+
+    <VerticalStackLayout Padding="20" Spacing="10" Margin="20" WidthRequest="350">
+        <Entry Placeholder="Nazwa przedmiotu" Text="{Binding Name}" PlaceholderColor="Black"/>
+        <Entry Placeholder="Cena" Text="{Binding Price}" PlaceholderColor="Black"/>
+        <Entry Placeholder="Ocena 1-10" Text="{Binding Rating}" PlaceholderColor="Black"/>
+        <Entry Placeholder="Opis" Text="{Binding Description}" TextColor="Black" PlaceholderColor="Black"/>
+        <Entry Placeholder="Status" Text="{Binding Status}"  TextColor="Crimson" PlaceholderColor="Black"/>
+        <HorizontalStackLayout>
+            <Entry Placeholder="Custom Value Name" Text="{Binding CustomValueName}" PlaceholderColor="DarkMagenta"/>
+            <Entry Placeholder="Custom Value" Text="{Binding CustomValue}" PlaceholderColor="DarkMagenta"/>
+        </HorizontalStackLayout>
+        <Button Text="Wybierz obraz" Command="{Binding PickImageCommand}" BackgroundColor="LightGray" TextColor="Black" CornerRadius="5" />
+        <Image Source="{Binding ImagePath}" HeightRequest="100" />
+        <Button Text="Zapisz zmiany" Command="{Binding UpdateItemCommand}" BackgroundColor="White" TextColor="Black" CornerRadius="5" />
+        <Button Text="Zamknij" Command="{Binding ClosePopupCommand}" Background="Red" TextColor="White" CornerRadius="5" />
+    </VerticalStackLayout>
+</toolkit:Popup>

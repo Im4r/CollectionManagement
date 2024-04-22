@@ -1,0 +1,59 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CollectionManagement.CollectionPage"
+             >
+    <Grid Padding="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Button Text="Dodaj element" Command="{Binding AddElementCommand}"
+                BackgroundColor="White" BorderWidth="0"
+                TextColor="Black" HorizontalOptions="End"
+                Margin="0,0,10,0" Grid.Row="0"/>
+
+        <CollectionView ItemsSource="{Binding Items}" Grid.Row="1"
+                        ItemsLayout="HorizontalList">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame Padding="10" Opacity="{Binding Opacity}" Margin="5" BorderColor="LightGray" CornerRadius="5" WidthRequest="300" HeightRequest="400">
+                        <StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand">
+                            <Image Source="{Binding ImagePath}" HeightRequest="100" Aspect="AspectFill"/>
+                            <Frame BackgroundColor="White" Padding="10" Margin="5">
+                                <StackLayout HorizontalOptions="CenterAndExpand">
+                                    <Label Text="{Binding Name}" FontAttributes="Bold" FontSize="Subtitle" HorizontalTextAlignment="Center"/>
+                                    <Label Text="{Binding Status}" TextColor="Red" HorizontalTextAlignment="Center"/>
+                                    <HorizontalStackLayout HorizontalOptions="CenterAndExpand">
+                                        <Label Text="Cena: " Margin="0,0,5,0" FontAttributes="Bold"/>
+                                        <Label Text="{Binding Price}" HorizontalTextAlignment="Center" />
+                                        <Label Text=" | " HorizontalTextAlignment="Center"/>
+                                        <Label Text="Ocena: " Margin="0,0,5,0" FontAttributes="Bold"/>
+                                        <Label Text="{Binding Rating}" HorizontalTextAlignment="Center"/>
+                                    </HorizontalStackLayout>
+                                    <Frame BorderColor="DarkGray" CornerRadius="5" Padding="5" Margin="0,5,0,0">
+                                        <HorizontalStackLayout>
+                                            <Label Text="Opis: " Margin="0,0,5,0" FontAttributes="Bold"/>
+                                            <Label Text="{Binding Description}" HorizontalTextAlignment="Center"/>
+                                            
+                                        </HorizontalStackLayout>
+                                    </Frame>
+                                    <Frame Padding="5" Margin="0,5,0,0">
+                                        <HorizontalStackLayout>
+                                            <Label Text="{Binding CustomValueName}" Margin="0,0,5,0" FontAttributes="Bold"/>
+                                            <Label Text="{Binding CustomValue}" HorizontalTextAlignment="Center"/>
+                                        </HorizontalStackLayout>
+                                    </Frame>
+                                </StackLayout>
+                            </Frame>
+                            <VerticalStackLayout HorizontalOptions="FillAndExpand">
+                                <Button Text="Edytuj" Command="{Binding BindingContext.EditItemCommand, Source={RelativeSource AncestorType={x:Type ContentPage}}}" CommandParameter="{Binding .}" BackgroundColor="Beige" TextColor="DimGray" CornerRadius="2"/>
+                                <Button Text="Usun" Command="{Binding BindingContext.DeleteElementCommand, Source={RelativeSource AncestorType={x:Type ContentPage}}}" CommandParameter="{Binding .}" BackgroundColor="IndianRed" TextColor="Black" CornerRadius="2"/>
+                            </VerticalStackLayout>
+                        </StackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>
